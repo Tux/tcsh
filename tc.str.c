@@ -590,10 +590,14 @@ bb_cleanup(void *xbb)
     struct blk_buf *bb;
     size_t i;
 
-    bb = xbb;
-    for (i = 0; i < bb->len; i++)
-	xfree(bb->vec[i]);
-    xfree(bb->vec);
+    bb = (struct blk_buf *)xbb;
+    if (bb->vec) {
+	for (i = 0; i < bb->len; i++)
+	    xfree(bb->vec[i]);
+	xfree(bb->vec);
+    }
+    bb->vec = NULL;
+    bb->len = 0;
 }
 
 void
