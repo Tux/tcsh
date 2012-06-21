@@ -66,7 +66,7 @@ out_of_memory (void)
 {
     static const char msg[] = "Out of memory\n";
 
-    write(didfds ? 2 : SHDIAG, msg, strlen(msg));
+    TCSH_IGNORE(write(didfds ? 2 : SHDIAG, msg, strlen(msg)));
     _exit(1);
 }
 #endif
