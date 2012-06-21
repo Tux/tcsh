@@ -491,6 +491,7 @@ Char STRmmcolormauto[]	= { '-', 'G', '\0' };
 Char STRmmcolormauto[]	= { '-', '-', 'c', 'o', 'l', 'o', 'r', '=', 'a', 'u', 't', 'o', '\0' };
 #endif /* BSD_STYLE_COLORLS */
 Char STRLS_COLORS[]	= { 'L', 'S', '_', 'C', 'O', 'L', 'O', 'R', 'S', '\0' };
+Char STRLSCOLORS[]	= { 'L', 'S', 'C', 'O', 'L', 'O', 'R', 'S', '\0' };
 #endif /* COLOR_LS_F */
 
 Char STRls[]		= { 'l', 's', '\0' };

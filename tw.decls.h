@@ -125,6 +125,7 @@ extern	 int		  tw_complete		(const Char *, Char **,
 extern	 void		  set_color_context	(void);
 extern	 void		  print_with_color	(const Char *, size_t, Char);
 extern	 void		  parseLS_COLORS	(const Char *);
+extern	 void		  parseLSCOLORS		(const Char *);
 #endif /* COLOR_LS_F */
 
 #endif /* _h_tw_decls */

@@ -797,6 +797,8 @@ main(int argc, char **argv)
 #ifdef COLOR_LS_F
     if ((tcp = getenv("LS_COLORS")) != NULL)
 	parseLS_COLORS(str2short(tcp));
+    if ((tcp = getenv("LSCOLORS")) != NULL)
+	parseLSCOLORS(str2short(tcp));
 #endif /* COLOR_LS_F */
 
     doldol = putn((tcsh_number_t)getpid());	/* For $$ */

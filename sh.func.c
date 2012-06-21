@@ -1543,6 +1543,11 @@ dosetenv(Char **v, struct command *c)
 	cleanup_until(lp);
 	return;
     }
+    if (eq(vp, STRLSCOLORS)) {
+        parseLSCOLORS(lp);
+	cleanup_until(lp);
+	return;
+    }
 #endif /* COLOR_LS_F */
 
 #ifdef SIG_WINDOW
@@ -1670,6 +1675,8 @@ dounsetenv(Char **v, struct command *c)
 #ifdef COLOR_LS_F
 		else if (eq(name, STRLS_COLORS))
 		    parseLS_COLORS(n);
+		else if (eq(name, STRLSCOLORS))
+		    parseLSCOLORS(n);
 #endif /* COLOR_LS_F */
 #ifdef NLS_CATALOGS
 		else if (eq(name, STRNLSPATH)) {
