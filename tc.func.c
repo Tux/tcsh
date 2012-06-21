@@ -1109,7 +1109,7 @@ rmstar(struct wordent *cp)
 #endif /* RMDEBUG */
     Char   *charac;
     char    c;
-    int     ask, doit, star = 0, silent = 0;
+    int     ask, doit, star = 0, silent = 0, opintr_disabled;
 
     if (!adrof(STRrmstar))
 	return;
@@ -1119,6 +1119,8 @@ rmstar(struct wordent *cp)
     we = cp->next;
     while (*we->word == ';' && we != cp)
 	we = we->next;
+    opintr_disabled = pintr_disabled;
+    pintr_disabled = 0;
     while (we != cp) {
 #ifdef RMDEBUG
 	if (*tag)
@@ -1195,6 +1197,7 @@ rmstar(struct wordent *cp)
 	    xprintf("%S ", we->word);
     }
 #endif /* RMDEBUG */
+    pintr_disabled = opintr_disabled;
     return;
 }
 
