@@ -125,7 +125,7 @@ enum ansi {
     ANSI_UNDERLINE_ON = 4,	/* underline on */
     ANSI_INVERSE_ON = 7,	/* inverse on */
     ANSI_STRIKETHROUGH_ON = 9,	/* strikethrough on */
-    ANSI_BOLD_OFF = 22,		/* bold off */
+    ANSI_BOLD_OFF = 21,		/* bold off */
     ANSI_ITALICS_OFF = 23,	/* italics off */
     ANSI_UNDERLINE_OFF = 24,	/* underline off */
     ANSI_INVERSE_OFF = 27,	/* inverse off */
