@@ -65,6 +65,8 @@ RCSID("$tcsh$")
 #  define TCSH_PATH_UTMP "/var/run/utx.active"
 # elif defined(__hpux)
 #  define TCSH_PATH_UTMP "/etc/utmpx"
+# elif defined(IBMAIX) && define(UTMP_FILE)
+#  define TCSH_PATH_UTMP UTMP_FILE
 # endif
 # if defined(TCSH_PATH_UTMP) || !defined(HAVE_UTMP_H)
 #  define utmp utmpx
