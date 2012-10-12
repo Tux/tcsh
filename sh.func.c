@@ -799,8 +799,16 @@ search(int type, int level, Char *goal)
 	    break;
 
 	case TC_IF:
-	    while (getword(&word))
+	    while (getword(&word)) {
+		if (intty) {
+		    histent->word = Strsave(word.s);
+		    histent->next = xmalloc(sizeof(*histent));
+		    histent->next->prev = histent;
+		    histent = histent->next;
+		}
 		continue;
+	    }
+	    
 	    if ((type == TC_IF || type == TC_ELSE) &&
 		eq(word.s, STRthen))
 		level++;
