@@ -172,6 +172,7 @@ sh_access(const Char *fname, int mode)
 		    mode <<= 3;
 		    break;
 		}
+	    xfree(groups);
 	}
     }
 # endif /* NGROUPS_MAX */
