@@ -507,6 +507,7 @@ pjwait(struct process *pp)
     cleanup_push(&oset, sigprocmask_cleanup);
     pause_mask = oset;
     sigdelset(&pause_mask, SIGCHLD);
+    sigaddset(&pause_mask, SIGINT);
     for (;;) {
 	(void)handle_pending_signals();
 	jobflags = 0;
