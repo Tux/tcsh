@@ -426,7 +426,7 @@ handleone(Char *str, Char **vl, int action)
 static Char **
 libglob(Char **vl)
 {
-    int     gflgs = GLOB_QUOTE | GLOB_NOMAGIC | GLOB_ALTNOT;
+    int     gflgs = GLOB_NOESCAPE | GLOB_NOMAGIC | GLOB_ALTNOT;
     glob_t  globv;
     char   *ptr;
     int     nonomatch = adrof(STRnonomatch) != 0, magic = 0, match = 0;
