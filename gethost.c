@@ -180,7 +180,7 @@ explode(const char *defs)
 	buf = NULL;
 	for (ptr = defs; (bptr = strstr(ptr, def)) != NULL; ptr = eptr + 1) {
 		if (ptr != bptr)
-			buf = cat(buf, ptr, bptr - ptr);
+			buf = cat(buf, ptr, bptr - ptr + 1);
 		buf = cat(buf, "(", 0); /* ) */
 		if ((eptr = strchr(ptr + sizeof(def) - 1, ')')) == NULL) {
 			(void) fprintf(stderr, "%s: missing close paren `%s'\n",
