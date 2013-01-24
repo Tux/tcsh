@@ -1389,7 +1389,7 @@ dosetenv(Char **v, struct command *c)
 	stderror(ERR_NAME | ERR_VARBEGIN);
     do {
 	lp++;
-    } while (alnum(*lp));
+    } while (alnum(*lp) || *lp == '.');
     if (*lp != '\0')
 	stderror(ERR_NAME | ERR_VARALNUM);
 
