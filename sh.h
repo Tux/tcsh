@@ -428,9 +428,7 @@ typedef long tcsh_number_t;
 # if (defined(_SS_SIZE) || defined(_SS_MAXSIZE)) && defined(HAVE_STRUCT_SOCKADDR_STORAGE_SS_FAMILY)
 #  if !defined(__APPLE__) /* Damnit, where is getnameinfo() folks? */
 #   if !defined(sgi)
-#    if !defined(__CYGWIN__)
-#     define INET6
-#    endif /* __CYGWIN__ */
+#    define INET6
 #   endif /* sgi */
 #  endif /* __APPLE__ */
 # endif
@@ -1005,10 +1003,6 @@ EXTERN Char  **alvec IZERO_STRUCT,
 /*
  * Filename/command name expansion variables
  */
-
-#ifdef __CYGWIN__
-# undef MAXPATHLEN
-#endif /* __CYGWIN__ */
 
 #ifndef MAXPATHLEN
 # ifdef PATH_MAX
