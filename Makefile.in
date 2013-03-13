@@ -594,12 +594,12 @@ vgrind:
 	@vgrind -t -x -h Index index >/crp/bill/csh/index.t
 
 install-strip: install
+	-strip ${DESTBIN}/tcsh$(EXEEXT)
 
 install: tcsh$(EXEEXT) install.catalogs install.man
 	-mkdir -p ${DESTBIN}
 	-mv -f ${DESTBIN}/tcsh$(EXEEXT)  ${DESTBIN}/tcsh.old
 	cp tcsh$(EXEEXT) ${DESTBIN}/tcsh$(EXEEXT)
-	-strip ${DESTBIN}/tcsh$(EXEEXT)
 	chmod 755 ${DESTBIN}/tcsh$(EXEEXT)
 
 install.catalogs:
