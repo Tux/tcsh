@@ -1181,7 +1181,7 @@ enddef	:
 
 newdef	: defined(CYGWIN)
 comment : Cygwin
-vendor	:						: "intel"
+vendor	: defined(M_intel)				: "intel"
 hosttype:						: gethost()
 ostype	:						: getostype()
 machtype:						: getmach()
