@@ -560,13 +560,13 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
 			(void) signal(SIGHUP, SIG_DFL);
 		    if (t->t_dflg & F_NICE) {
 			int nval = SIGN_EXTEND_CHAR(t->t_nice);
-# ifdef HAVE_SETPRIORITY
+# if defined(HAVE_SETPRIORITY) && defined(PRIO_PROCESS)
 			if (setpriority(PRIO_PROCESS, 0, nval) == -1 && errno)
 				stderror(ERR_SYSTEM, "setpriority",
 				    strerror(errno));
-# else /* !HAVE_SETPRIORITY */
+# else /* !HAVE_SETPRIORITY || !PRIO_PROCESS */
 			(void) nice(nval);
-# endif /* HAVE_SETPRIORITY */
+# endif /* HAVE_SETPRIORITY && PRIO_PROCESS */
 		    }
 # ifdef F_VER
 		    if (t->t_dflg & F_VER) {

@@ -99,6 +99,11 @@ case "${host}" in
     tcsh_config_file=sysV88
   ;;
 
+  ## Minix systems
+  *-*-minix*)
+    tcsh_config_file=minix
+  ;;
+
   ## NetBSD systems
   *-*-netbsd*)
     tcsh_config_file=bsd4.4
