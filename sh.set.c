@@ -195,6 +195,9 @@ update_vars(Char *vp)
     else if (eq(vp, STRkillring)) {
 	SetKillRing((int)getn(varval(vp)));
     }
+    else if (eq(vp, STRhistory)) {
+	sethistory((int)getn(varval(vp)));
+    }
 #ifndef HAVENOUTMP
     else if (eq(vp, STRwatch)) {
 	resetwatch();
@@ -786,6 +789,8 @@ unset(Char **v, struct command *c)
 	noediting = 0;
     if (did_roe && adrof(STRrecognize_only_executables) == 0)
 	tw_cmd_free();
+    if (adrof(STRhistory) == 0)
+	sethistory(0);
 #ifdef COLOR_LS_F
     if (adrof(STRcolor) == 0)
 	set_color_context();

@@ -221,6 +221,7 @@ extern	char		 *fmthist	(int, ptr_t);
 extern	void		  rechist	(Char *, int);
 extern	void		  loadhist	(Char *, int);
 extern	void		  displayHistStats(const char *);
+extern	void		  sethistory	(int);
 
 /*
  * sh.init.c

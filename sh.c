@@ -355,6 +355,7 @@ main(int argc, char **argv)
 
     /* Default history size to 100 */
     setcopy(STRhistory, str2short("100"), VAR_READWRITE);
+    sethistory(100);
 
     tempv = argv;
     ffile = SAVE(tempv[0]);
