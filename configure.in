@@ -124,6 +124,11 @@ case "${host}" in
     tcsh_config_file=bsd4.4
   ;;
 
+  ## MirBSD systems
+  *-*-mirbsd*)
+    tcsh_config_file=bsd4.4
+  ;;
+
   ## OpenBSD systems
   *-*-openbsd*)
     tcsh_config_file=bsd4.4
