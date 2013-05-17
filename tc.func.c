@@ -738,7 +738,7 @@ auto_lock(void)
 	pp = xgetpass("Password:");
 
 	crpp = XCRYPT(pw, pp, srpp);
-	if ((strcmp(crpp, srpp) == 0)
+	if ((crpp && strcmp(crpp, srpp) == 0)
 #ifdef AFS
 	    || (ka_UserAuthenticateGeneral(KA_USERAUTH_VERSION,
 					   afsname,     /* name */
