@@ -1945,6 +1945,14 @@ struct limits limits[] =
     { RLIMIT_NOFILE, 	"descriptors", 1,	""		},
 # endif /* RLIMIT_NOFILE */
 
+# ifdef RLIMIT_NPTS
+    { RLIMIT_NPTS,	"pseudoterminals", 1,	""		},
+# endif /* RLIMIT_NPTS */
+
+# ifdef RLIMIT_KQUEUES
+    { RLIMIT_KQUEUES,	"kqueues",	1,	""		},
+# endif /* RLIMIT_KQUEUES */
+
 # ifdef RLIMIT_CONCUR
     { RLIMIT_CONCUR, 	"concurrency", 1,	"thread(s)"	},
 # endif /* RLIMIT_CONCUR */
@@ -1956,6 +1964,10 @@ struct limits limits[] =
 # ifdef RLIMIT_NPROC
     { RLIMIT_NPROC,	"maxproc",	1,	""		},
 # endif /* RLIMIT_NPROC */
+
+# ifdef RLIMIT_NTHR
+    { RLIMIT_NTHR,	"threads",	1,	""		},
+# endif /* RLIMIT_NTHR */
 
 # if defined(RLIMIT_OFILE) && !defined(RLIMIT_NOFILE)
     { RLIMIT_OFILE,	"openfiles",	1,	""		},
@@ -1972,6 +1984,10 @@ struct limits limits[] =
 # ifdef RLIMIT_LOCKS 
     { RLIMIT_LOCKS,	"maxlocks",	1,	""		}, 
 # endif /* RLIMIT_LOCKS */ 
+
+# ifdef RLIMIT_POSIXLOCKS
+    { RLIMIT_POSIXLOCKS,"posixlocks",	1,	""		},
+# endif /* RLIMIT_POSIXLOCKS */
 
 # ifdef RLIMIT_SIGPENDING 
     { RLIMIT_SIGPENDING,"maxsignal",	1,	""		}, 
