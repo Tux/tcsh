@@ -78,6 +78,7 @@ extern	void		  loaddirs	(Char *);
 extern	void		  Dfix		(struct command *);
 extern	Char		 *Dfix1		(Char *);
 extern	void		  heredoc	(Char *);
+extern  Char		 *randsuf	(void);
 
 /*
  * sh.err.c
