@@ -1,0 +1,17 @@
+*.o
+Makefile
+aclocal.m4
+atconfig
+autom4te.cache/
+config.h
+config.log
+config.status
+config_p.h
+ed.defns.h
+tc.defs.c
+gethost
+*.cat
+sh.err.h
+tags
+tc.const.h
+tcsh
