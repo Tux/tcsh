@@ -1222,6 +1222,7 @@ rechist(Char *fname, int ref)
     int     fp, ftmp, oldidfds;
     struct varent *shist;
     char path[MAXPATHLEN];
+    struct stat st;
     static Char   *dumphist[] = {STRhistory, STRmhT, 0, 0};
 
     if (fname == NULL && !ref) 
@@ -1299,6 +1300,11 @@ rechist(Char *fname, int ref)
 	didfds = oldidfds;
 	cleanup_until(fname);
 	return;
+    }
+    /* Try to preserve ownership and permissions of the original history file */
+    if (stat(short2str(fname), &st) != -1) {
+	TCSH_IGNORE(fchown(fp, st.st_uid, st.st_gid));
+	TCSH_IGNORE(fchmod(fp, st.st_mode));
     }
     ftmp = SHOUT;
     SHOUT = fp;
