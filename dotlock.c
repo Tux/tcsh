@@ -26,6 +26,7 @@
 #include "sh.h"
 RCSID("$tcsh$");
 
+#include <stdio.h>
 #ifndef O_SYNC
 #define O_SYNC	0
 #endif
