@@ -459,7 +459,7 @@ malloc_usable_size(M_U_S_CONST void *ptr)
     const union overhead *op = (const union overhead *)
 	(((const char *) ptr) - MEMALIGN(sizeof(*op)));
     if (op->ov_magic == MAGIC)
-	    return 1 << (op->ov_index + 2);
+	    return 1 << (op->ov_index + 3);
     else
 	    return 0;
 }
