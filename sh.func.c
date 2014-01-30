@@ -1966,7 +1966,7 @@ struct limits limits[] =
 # endif /* RLIMIT_NPROC */
 
 # ifdef RLIMIT_NTHR
-    { RLIMIT_NTHR,	"threads",	1,	""		},
+    { RLIMIT_NTHR,	"maxthread",	1,	""		},
 # endif /* RLIMIT_NTHR */
 
 # if defined(RLIMIT_OFILE) && !defined(RLIMIT_NOFILE)
@@ -2008,10 +2008,6 @@ struct limits limits[] =
 # ifdef RLIMIT_RTTIME 
     { RLIMIT_RTTIME,	"maxrttime",	1,	"usec"		}, 
 # endif /* RLIMIT_RTTIME */ 
-
-# ifdef RLIMIT_NTHR 
-    { RLIMIT_NTHR,	"maxthread",	1,	""		}, 
-# endif /* RLIMIT_NTHR */ 
 
     { -1, 		NULL, 		0, 	NULL		}
 };
