@@ -825,9 +825,8 @@ setDolp(Char *cp)
 		    (void) Strcpy(np + diff, rhsub);
 		    (void) Strcpy(np + diff + rhlen, dp + lhlen);
 
-		    dp = np + diff + 1;
 		    xfree(cp);
-		    cp = np;
+		    dp = cp = np;
 		    cp[--len] = '\0';
 		    didmod = 1;
 		    if (diff >= (ssize_t)len)
