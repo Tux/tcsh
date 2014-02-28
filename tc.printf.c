@@ -68,7 +68,7 @@ doprnt(void (*addchar) (int), const char *sfmt, va_list ap)
     int fmt;
     unsigned char pad = ' ';
     int     flush_left = 0, f_width = 0, prec = INF, hash = 0;
-    int	    do_long = 0, do_size_t = 0;
+    int	    do_long = 0, do_size_t = 0, do_ptrdiff_t = 0;
     int     sign = 0, count = 0;
     int     attributes = 0;
 
@@ -130,6 +130,10 @@ doprnt(void (*addchar) (int), const char *sfmt, va_list ap)
 	    }
 	    if (*f == 'z') {	/* size_t format */
 		do_size_t++;
+		f++;
+	    }
+	    if (*f == 't') {	/* ptrdiff_t format */
+		do_ptrdiff_t++;
 		f++;
 	    }
 
@@ -199,6 +203,8 @@ doprnt(void (*addchar) (int), const char *sfmt, va_list ap)
 		case 0:
 		    if (do_size_t)
 			u = va_arg(ap, size_t);
+		    else if (do_ptrdiff_t)
+			u = va_arg(ap, ptrdiff_t);
 		    else
 			u = va_arg(ap, unsigned int);
 		    break;
@@ -340,7 +346,7 @@ lcase_s:
 		break;
 	    }
 	    flush_left = 0, f_width = 0, prec = INF, hash = 0;
-	    do_size_t = 0, do_long = 0;
+	    do_ptrdiff_t = 0, do_size_t = 0, do_long = 0;
 	    sign = 0;
 	    pad = ' ';
 	}
