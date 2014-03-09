@@ -31,6 +31,8 @@ RCSID("$tcsh$");
 #define O_SYNC	0
 #endif
 
+#include "dotlock.h"
+
 static int create_exclusive(const char *);
 /*
  * Create a unique file. O_EXCL does not really work over NFS so we follow

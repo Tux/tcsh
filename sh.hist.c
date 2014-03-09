@@ -1209,7 +1209,8 @@ fmthist(int fmt, ptr_t ptr)
     }
 }
 
-void dotlock_cleanup(void* lockpath)
+static void
+dotlock_cleanup(void* lockpath)
 {
 	dot_unlock((char*)lockpath);
 }

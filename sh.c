@@ -821,7 +821,7 @@ main(int argc, char **argv)
 #else /* !WINNT_NATIVE */
 #ifdef HAVE_MKSTEMP
     {
-	char *tmpdir = getenv ("TMPDIR");
+	const char *tmpdir = getenv ("TMPDIR");
 	if (!tmpdir)
 	    tmpdir = "/tmp";
 	shtemp = Strspl(SAVE(tmpdir), SAVE("/sh" TMP_TEMPLATE)); /* For << */

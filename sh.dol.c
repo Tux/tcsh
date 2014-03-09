@@ -923,7 +923,7 @@ Char *
 randsuf(void) {
 	struct timeval tv;
 	(void) gettimeofday(&tv, NULL);
-	putn((((tcsh_number_t)tv.tv_sec) ^ 
+	return putn((((tcsh_number_t)tv.tv_sec) ^ 
 	    ((tcsh_number_t)tv.tv_usec) ^
 	    ((tcsh_number_t)getpid())) & 0x00ffffff);
 }
