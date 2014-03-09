@@ -559,7 +559,7 @@ short2qstr(const Char *src)
 }
 
 struct blk_buf *
-bb_alloc()
+bb_alloc(void)
 {
     return xcalloc(1, sizeof(struct blk_buf));
 }

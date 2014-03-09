@@ -941,7 +941,7 @@ c_push_kill(Char *start, Char *end)
 
 /* Save InputBuf etc in SavedBuf etc for restore after cmd exec */
 static void
-c_save_inputbuf()
+c_save_inputbuf(void)
 {
     SavedBuf.len = 0;
     Strbuf_append(&SavedBuf, InputBuf);
@@ -953,7 +953,7 @@ c_save_inputbuf()
 }
 
 CCRETVAL
-GetHistLine()
+GetHistLine(void)
 {
     struct Hist *hp;
     int     h;

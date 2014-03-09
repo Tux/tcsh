@@ -994,14 +994,14 @@ SetAttributes(Char atr)
 int highlighting = 0;
 
 void
-StartHighlight()
+StartHighlight(void)
 {
     (void) tputs(Str(T_mr), 1, PUTPURE);
     highlighting = 1;
 }
 
 void
-StopHighlight()
+StopHighlight(void)
 {
     (void) tputs(Str(T_me), 1, PUTPURE);
     highlighting = 0;
