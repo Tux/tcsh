@@ -1437,7 +1437,8 @@ GetTermCaps(void)
     if (i <= 0) {
 	if (i == -1) {
 #if (SYSVREL == 0) || defined(IRIS3D)
-	    xprintf(CGETS(7, 20, "%s: Cannot open /etc/termcap.\n"), progname);
+	    xprintf(CGETS(7, 20,
+		"%s: The terminal database could not be opened.\n"), progname);
 	}
 	else if (i == 0) {
 #endif /* SYSVREL */
