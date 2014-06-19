@@ -104,8 +104,8 @@ ${localedir}/es/LC_MESSAGES/tcsh.cat:	spanish.cat
 spanish.cat: ${srcdir}/spanish/charset ${srcdir}/spanish/*set[0-9]*
 	@${CATGEN} $(GENCAT) $@ $^ $>
 
-INSTALLED+=${localedir}/ru_UA.koi8u/LC_MESSAGES/tcsh.cat
-${localedir}/ru_UA.koi8u/LC_MESSAGES/tcsh.cat:	ukrainian.cat
+INSTALLED+=${localedir}/ru_UA/LC_MESSAGES/tcsh.cat
+${localedir}/ru_UA/LC_MESSAGES/tcsh.cat:	ukrainian.cat
 	mkdir -p $(@D)
 	$(INSTALL) $> $@
 
