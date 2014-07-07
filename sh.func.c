@@ -901,7 +901,7 @@ search(int type, int level, Char *goal)
 static struct wordent *
 histgetword(struct wordent *histent) 
 {
-    int found = 0, first;
+    int first;
     eChar c, d;
     int e;
     struct Strbuf *tmp;
@@ -925,7 +925,6 @@ histgetword(struct wordent *histent)
 	if (c == '\n') 
 	    goto nl;
 	unreadc(c);
-	found = 1;
 	first = 1;
 	do {
 	    e = (c == '\\');
