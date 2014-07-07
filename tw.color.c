@@ -273,19 +273,21 @@ makecolor(char **c, int fg, int bg, Str *v)
 /* parseLSCOLORS():
  * 	Parse the LSCOLORS environment variable
  */
+static const Char *xv;	/* setjmp clobbering */
 void
 parseLSCOLORS(const Char *value)
 {
     size_t i, len, clen;
     jmp_buf_t osetexit;
     size_t omark;
+    xv = value;
 
-    if (value == NULL) {
+    if (xv == NULL) {
 	init(0, 0);
 	return;
     }
 
-    len = Strlen(value);
+    len = Strlen(xv);
     len >>= 1;
     clen = len * 12;	/* "??;??;??;??\0" */
     init(clen, 0);
@@ -297,7 +299,7 @@ parseLSCOLORS(const Char *value)
     /* init pointers */
 
     if (setexit() == 0) {
-	const Char *v = value;
+	const Char *v = xv;
 	char *c = colors;
 
 	int fg, bg;
