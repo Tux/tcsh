@@ -1070,6 +1070,9 @@ dowhere(Char **v, struct command *c)
 {
     int found = 1;
     USE(c);
+
+    if (adrof(STRautorehash))
+	dohash(NULL, NULL);
     for (v++; *v; v++)
 	found &= find_cmd(*v, 1);
     /* Make status nonzero if any command is not found. */
@@ -1166,7 +1169,11 @@ retry:
 		return rval;
 	}
     }
-    if (adrof(STRautorehash) && !rehashed && havhash) {
+    /*
+     * If we are printing, we are being called from dowhere() which it 
+     * has rehashed already
+     */
+    if (!prt && adrof(STRautorehash) && !rehashed && havhash) {
 	dohash(NULL, NULL);
 	rehashed = 1;
 	goto retry;
