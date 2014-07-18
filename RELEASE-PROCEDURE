@@ -11,7 +11,7 @@ HOW TO RELEASE TCSH
 6)  Commit changes into CVS
 7)  run autoreconf
 8)  Commit changes into CVS
-9)  run configure && make check
+9)  run make distclean; configure && make && make check
 10) Tag the release with TCSHx_yy_zz where
 	x  == REV
 	yy == VERS
