@@ -375,11 +375,11 @@ dolist(Char **v, struct command *c)
 		xputchar('\n');
 	    print_by_column(STRNULL, &v[i], k - i, FALSE);
 	}
+	if (ret)
+	    stderror(ERR_SILENT);
     }
 
     cleanup_until(globbed);
-    if (ret)
-	stderror(ERR_SILENT);
 }
 
 extern int GotTermCaps;
