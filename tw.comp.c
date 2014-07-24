@@ -255,7 +255,8 @@ tw_match(const Char *str, const Char *pat, int exact)
 #ifdef TDEBUG
     xprintf("G%smatch(%s, ", exact ? "" : "n", short2str(str));
     xprintf("%s, ", short2str(pat));
-    xprintf("%s) = %d [%td]\n", short2str(estr), rv, estr - str);
+    xprintf("%s) = %d [%" TCSH_PTRDIFF_T_FMT "d]\n", short2str(estr), rv,
+	estr - str);
 #endif /* TDEBUG */
     return (int) (rv ? estr - str : -1);
 }

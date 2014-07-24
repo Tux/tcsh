@@ -127,6 +127,11 @@ typedef int eChar;
 #if !defined(__inline) && !defined(__GNUC__) && !defined(_MSC_VER)
 #define __inline
 #endif
+#ifdef _MSC_VER
+#define TCSH_PTRDIFF_T_FMT "I"
+#else
+#define TCSH_PTRDIFF_T_FMT "t"
+#endif
 /* Elide unused argument warnings */
 #define USE(a)	(void) (a)
 #define TCSH_IGNORE(a)	tcsh_ignore((intptr_t)a)
