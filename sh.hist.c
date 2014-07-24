@@ -34,6 +34,7 @@
 
 RCSID("$tcsh$")
 
+#include <stdio.h>	/* for rename(2), grr. */
 #include <assert.h>
 #include "tc.h"
 #include "dotlock.h"
