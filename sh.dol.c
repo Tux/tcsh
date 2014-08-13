@@ -921,11 +921,15 @@ inheredoc_cleanup(void *dummy)
 
 Char *
 randsuf(void) {
+#ifndef WINNT_NATIVE
 	struct timeval tv;
 	(void) gettimeofday(&tv, NULL);
 	return putn((((tcsh_number_t)tv.tv_sec) ^ 
 	    ((tcsh_number_t)tv.tv_usec) ^
 	    ((tcsh_number_t)getpid())) & 0x00ffffff);
+#else
+    return putn(getpid());
+#endif
 }
 
 /*

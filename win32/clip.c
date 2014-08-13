@@ -240,6 +240,9 @@ CCRETVAL e_paste_from_clipboard(Char c) {
 	hclip = GetClipboardData(CF_TEXT);
 	if (hclip) {
 		clipbuf = (unsigned char*)GlobalLock(hclip);
+        if(!clipbuf) {
+            return CC_ERROR;
+        }
 
 		cbp = clipbuf;
 		len = 0;
@@ -407,6 +410,9 @@ void clip_reader_proc(HANDLE houtpipe) {
 
 	obsize = 4096;
 	outbuf = heap_alloc(obsize);
+    if(!outbuf) {
+        return;
+    }
 	ptr = outbuf;
 
 
@@ -421,6 +427,9 @@ void clip_reader_proc(HANDLE houtpipe) {
 	hclip = GetClipboardData(CF_TEXT);
 	if (hclip) {
 		clipbuf = (unsigned char*)GlobalLock(hclip);
+        if(!clipbuf) {
+            goto done;
+        }
 
 		cbp = clipbuf;
 

@@ -226,6 +226,7 @@ typedef size_t caddr_t;
 typedef int sig_atomic_t;
 typedef int mode_t;
 typedef UINT32 uint32_t;
+typedef unsigned char uint8_t;
 
 struct timeval{
 	long tv_sec;

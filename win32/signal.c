@@ -432,6 +432,9 @@ unsigned int alarm(unsigned int seconds) {
 
 	if (!__halarm) {
 		__halarm=CreateEvent(&secd,FALSE,FALSE,NULL);
+                if(!__halarm) {
+                        return 0;
+                }
 	}
 	if(__alarm_set )
 		SetEvent(__halarm);
@@ -512,22 +515,27 @@ void sigchild_thread(struct thread_args *args) {
 }
 void start_sigchild_thread(HANDLE hproc, DWORD pid) {
 
-	struct thread_args *args=heap_alloc(sizeof(struct thread_args));
-	DWORD tid;
-	HANDLE hthr;
-	args->hproc = hproc;
-	args->pid = pid;
+    struct thread_args *args=heap_alloc(sizeof(struct thread_args));
+    DWORD tid;
+    HANDLE hthr;
+    if(!args) {
+        return;
+    }
+    args->hproc = hproc;
+    args->pid = pid;
 
     dprintf("creating sigchild thread for pid %d\n",pid);
-	hthr = CreateThread(NULL,
-							gdwStackSize,
-							(LPTHREAD_START_ROUTINE)sigchild_thread,
-							(LPVOID)args,
-							0,
-							&tid);
+    hthr = CreateThread(NULL,
+            gdwStackSize,
+            (LPTHREAD_START_ROUTINE)sigchild_thread,
+            (LPVOID)args,
+            0,
+            &tid);
 
 
-	CloseHandle(hthr);
+    if(hthr) {
+        CloseHandle(hthr);
+    }
 
 }
 int kill(int pid, int sig) {
@@ -568,6 +576,7 @@ int kill(int pid, int sig) {
                 errno = ESRCH;
                 ret = -1;
                 dprintf("proc %d not found\n",pid);
+                break;
             }
             else{
                 dprintf("proc %d found\n",pid);

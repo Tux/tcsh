@@ -44,6 +44,7 @@
 
 #include "nt.const.h"
 
+#pragma warning(disable:6001 6011)
 
 extern DWORD gdwPlatform;
 
@@ -383,7 +384,7 @@ void dotitle(Char **vc, struct command * c) {
 	char titlebuf[512];
 	char errbuf[128],err2[128];
 	char **v;
-	Char *nvc;
+	Char **nvc;
 
 	UNREFERENCED_PARAMETER(c);
 	vc++;
@@ -629,7 +630,7 @@ void init_shell_dll(void) {
 			break;
 		ptr++;
 	}
-#if NTDBG
+#if NTDBG_X
 	for(i=0;i<20,no_assoc_array[i] != NULL;i++)
 		dprintf("no_assoc array %d inited remains %s\n",i,no_assoc_array[i]);
 #endif NTDBG
