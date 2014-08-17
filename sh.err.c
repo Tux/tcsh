@@ -380,10 +380,10 @@ struct cleanup_entry
 #endif
 };
 
-static struct cleanup_entry *cleanup_stack; /* = NULL; */
-static size_t cleanup_sp; /* = 0; Next free entry */
-static size_t cleanup_mark; /* = 0; Last entry to handle before unwinding */
-static size_t cleanup_stack_size; /* = 0 */
+static struct cleanup_entry *cleanup_stack INIT_ZERO; /* = NULL; */
+static size_t cleanup_sp INIT_ZERO; /* = 0; Next free entry */
+static size_t cleanup_mark INIT_ZERO; /* = 0; Last entry to handle before unwinding */
+static size_t cleanup_stack_size INIT_ZERO; /* = 0 */
 
 /* fn() will be run with all signals blocked, so it should not do anything
    risky. */

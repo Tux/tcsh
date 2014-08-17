@@ -85,7 +85,6 @@ void nt_init(void) {
 		gcurr_drive=temp[0];
 	}
 #endif SECURE_CD
-
 	_set_invalid_parameter_handler(do_nothing);
 	init_stdio();
 	nt_init_signals();
@@ -584,7 +583,7 @@ void silly_entry(void *peb) {
 	}
 	gdwVersion = osver.dwMajorVersion;
 
-//	if(gdwVersion < 6) // no wow64 hackery for vista.
+	if(gdwVersion < 6) // no wow64 hackery for vista.
 	{
 		init_wow64();
 	}

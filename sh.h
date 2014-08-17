@@ -1050,7 +1050,7 @@ EXTERN struct Hist {
     unsigned Hhash;                     /* hash value of command line */
 }       Histlist IZERO_STRUCT;
 
-EXTERN struct wordent paraml;	/* Current lexical word list */
+extern struct wordent paraml;	/* Current lexical word list */
 EXTERN int     eventno;		/* Next events number */
 EXTERN int     lastev;		/* Last event reference (default) */
 

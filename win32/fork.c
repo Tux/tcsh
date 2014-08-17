@@ -237,6 +237,7 @@ int fork(void) {
 		STR_environ = blk2short(environ);
 		environ = short2blk(STR_environ);	/* So that we can free it */
 
+        dprintf("returning 0\n");
 		return 0;
 	}
 	copy_fds();

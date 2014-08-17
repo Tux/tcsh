@@ -78,7 +78,8 @@ extern int NLSMapsAreInited;
  * ported to Apple Unix (TM) (OREO)  26 -- 29 Jun 1987
  */
 
-jmp_buf_t reslab;
+jmp_buf_t reslab IZERO_STRUCT;
+extern struct wordent paraml IZERO_STRUCT;
 
 static const char tcshstr[] = "tcsh";
 
@@ -250,10 +251,11 @@ main(int argc, char **argv)
     int osetintr;
     struct sigaction oparintr;
 
-    (void)memset(&reslab, 0, sizeof(reslab));
 #ifdef WINNT_NATIVE
     nt_init();
 #endif /* WINNT_NATIVE */
+
+    (void)memset(&reslab, 0, sizeof(reslab));
 #if defined(NLS_CATALOGS) && defined(LC_MESSAGES)
     (void) setlocale(LC_MESSAGES, "");
 #endif /* NLS_CATALOGS && LC_MESSAGES */
