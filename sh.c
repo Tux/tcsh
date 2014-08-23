@@ -79,7 +79,7 @@ extern int NLSMapsAreInited;
  */
 
 jmp_buf_t reslab IZERO_STRUCT;
-extern struct wordent paraml IZERO_STRUCT;
+struct wordent paraml IZERO_STRUCT;
 
 static const char tcshstr[] = "tcsh";
 
