@@ -346,10 +346,6 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
 	 * not pipedout, niced, nohupped, or &'d. It would be nice(?) to not
 	 * fork in some of these cases.
 	 */
-	/*
-	 * Prevent forking cd, pushd, popd, chdir cause this will cause the
-	 * shell not to change dir!
-	 */
 #ifdef BACKPIPE
 	/*
 	 * Can't have NOFORK for the tail of a pipe - because it is not the
@@ -358,11 +354,26 @@ execute(struct command *t, volatile int wanttty, int *pipein, int *pipeout,
 	 */
 	if (t->t_dflg & F_PIPEIN)
 	    t->t_dflg &= ~(F_NOFORK);
+#else
+	/*
+	 * "command | builtin" may cause major misbehaviour as noted in
+	 * in the BUGS file entry
+	 * Subject: Redirected input to built-in functions misbehaves badly
+	 * forking when the builtin is the end of the pipe corrects the
+	 * problem.
+	 */
+	if (bifunc && (t->t_dflg & F_PIPEIN))
+	    t->t_dflg &= ~(F_NOFORK);
 #endif /* BACKPIPE */
+	/*
+	 * Prevent forking cd, pushd, popd, chdir cause this will cause the
+	 * shell not to change dir! (XXX: but only for nice?)
+	 */
 	if (bifunc && (bifunc->bfunct == (bfunc_t)dochngd ||
 		       bifunc->bfunct == (bfunc_t)dopushd ||
 		       bifunc->bfunct == (bfunc_t)dopopd))
 	    t->t_dflg &= ~(F_NICE);
+
 	if (((t->t_dflg & F_TIME) || ((t->t_dflg & F_NOFORK) == 0 &&
 	     (!bifunc || t->t_dflg &
 	      (F_PIPEOUT | F_AMPERSAND | F_NICE | F_NOHUP | F_HUP)))) ||
