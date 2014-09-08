@@ -2183,6 +2183,7 @@ dosource(Char **t, struct command *c)
     cleanup_push(file, xfree);
     xfree(f);
     t = glob_all_or_error(t);
+    cleanup_push(t, blk_cleanup);
     if ((!srcfile(file, 0, hflg, t)) && (!hflg) && (!bequiet))
 	stderror(ERR_SYSTEM, file, strerror(errno));
     cleanup_until(file);
