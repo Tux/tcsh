@@ -46,7 +46,7 @@ endif
 
 if ( ! $?hosts ) set hosts
 
-foreach f ( "$HOME/."{,r,ssh/known_}hosts \
+foreach f ( "$HOME/."{,r,ssh/known_}hosts* \
   /usr/local/etc/csh.hosts /etc/hosts.equiv )
   if ( -r "$f" ) then
     set hosts=($hosts `sed \
@@ -55,7 +55,7 @@ foreach f ( "$HOME/."{,r,ssh/known_}hosts \
       -e 's/^[-+]//' \
       -e 's/[[:space:]].*//' \
       -e 's/,/\n/g' "$f" \
-      | sed -e '/^[.:[:xdigit:][:space:]]*$/d')
+      | sed -e '/^[.:[:xdigit:][:space:]]*$/d'`)
   endif
 end
 unset f
