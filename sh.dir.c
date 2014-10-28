@@ -501,7 +501,9 @@ dochngd(Char **v, struct command *c)
     cp = (dflag & DIR_OLD) ? varval(STRowd) : *v;
 
     if (cp == NULL) {
-	if ((cp = varval(STRhome)) == STRNULL || *cp == 0)
+	if (no_implicit_home)
+	    stderror(ERR_NAME | ERR_TOOFEW);
+	else if ((cp = varval(STRhome)) == STRNULL || *cp == 0)
 	    stderror(ERR_NAME | ERR_NOHOMEDIR);
 	if (chdir(short2str(cp)) < 0)
 	    stderror(ERR_NAME | ERR_CANTCHANGE);

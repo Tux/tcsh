@@ -574,7 +574,8 @@ EXTERN int    isdiagatty IZERO;/* is SHDIAG a tty */
 EXTERN int    is1atty IZERO;	/* is file descriptor 1 a tty (didfds mode) */
 EXTERN int    is2atty IZERO;	/* is file descriptor 2 a tty (didfds mode) */
 EXTERN int    arun IZERO;	/* Currently running multi-line-aliases */
-EXTERN int     implicit_cd IZERO;/* implicit cd enabled?(1=enabled,2=verbose) */
+EXTERN int    implicit_cd IZERO;/* implicit cd enabled?(1=enabled,2=verbose) */
+EXTERN int    no_implicit_home IZERO;/* implicit home disabled? */
 EXTERN int    inheredoc IZERO;	/* Currently parsing a heredoc */
 /* We received a window change event */
 EXTERN volatile sig_atomic_t windowchg IZERO;
