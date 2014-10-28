@@ -480,6 +480,9 @@ main(int argc, char **argv)
      */
     initdesc();
 
+    cdtohome = 1;
+    setv(STRcdtohome, SAVE(""), VAR_READWRITE);
+
     /*
      * Get and set the tty now
      */
@@ -496,6 +499,7 @@ main(int argc, char **argv)
     }
     else
 	setv(STRtty, cp = SAVE(""), VAR_READWRITE);
+
     /*
      * Initialize the shell variables. ARGV and PROMPT are initialized later.
      * STATUS is also munged in several places. CHILD is munged when
