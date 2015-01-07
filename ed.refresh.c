@@ -1299,7 +1299,7 @@ ClearDisp(void)
     CursorV = 0;		/* clear the display buffer */
     CursorH = 0;
     for (i = 0; i < TermV; i++)
-	(void) memset(Display[i], 0, TermH * sizeof(Display[0][0]));
+	(void) memset(Display[i], 0, (TermH + 1) * sizeof(Display[0][0]));
     OldvcV = 0;
     litlen = 0;
 }
