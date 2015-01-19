@@ -646,7 +646,7 @@ loop:
 	}
     pjobs = 0;
 
-    sigprocmask(SIG_BLOCK, &old_mask, NULL);
+    sigprocmask(SIG_SETMASK, &old_mask, NULL);
 }
 
 /*
