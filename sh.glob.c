@@ -879,7 +879,7 @@ backeval(struct blk_buf *bb, struct Strbuf *word, Char *cp, int literal)
 	if (c != 0 && (cnt || literal))
 	    pword(bb, word);
 	hadnl = 0;
-    } while (c > 0);
+    } while (c >= 0);
  eof:
     cleanup_until(&pvec[0]);
     pwait();
