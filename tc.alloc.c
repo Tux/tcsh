@@ -42,6 +42,9 @@
 #ifdef HAVE_MALLINFO
 #include <malloc.h>
 #endif
+#if defined(HAVE_SBRK) && !defined(__APPLE__)
+#define USE_SBRK
+#endif
 
 RCSID("$tcsh$")
 
@@ -513,19 +516,19 @@ smalloc(size_t n)
 
     n = n ? n : 1;
 
-#ifdef HAVE_SBRK
+#ifdef USE_SBRK
     if (membot == NULL)
 	membot = sbrk(0);
-#endif /* HAVE_SBRK */
+#endif /* USE_SBRK */
 
     if ((ptr = malloc(n)) == NULL)
 	out_of_memory();
-#ifndef HAVE_SBRK
+#ifndef USE_SBRK
     if (memtop < ((char *) ptr) + n)
 	memtop = ((char *) ptr) + n;
     if (membot == NULL)
 	membot = ptr;
-#endif /* !HAVE_SBRK */
+#endif /* !USE_SBRK */
     return ((memalign_t) ptr);
 }
 
@@ -536,19 +539,19 @@ srealloc(ptr_t p, size_t n)
 
     n = n ? n : 1;
 
-#ifdef HAVE_SBRK
+#ifdef USE_SBRK
     if (membot == NULL)
 	membot = sbrk(0);
-#endif /* HAVE_SBRK */
+#endif /* USE_SBRK */
 
     if ((ptr = (p ? realloc(p, n) : malloc(n))) == NULL)
 	out_of_memory();
-#ifndef HAVE_SBRK
+#ifndef USE_SBRK
     if (memtop < ((char *) ptr) + n)
 	memtop = ((char *) ptr) + n;
     if (membot == NULL)
 	membot = ptr;
-#endif /* !HAVE_SBRK */
+#endif /* !USE_SBRK */
     return ((memalign_t) ptr);
 }
 
@@ -560,22 +563,22 @@ scalloc(size_t s, size_t n)
     n *= s;
     n = n ? n : 1;
 
-#ifdef HAVE_SBRK
+#ifdef USE_SBRK
     if (membot == NULL)
 	membot = sbrk(0);
-#endif /* HAVE_SBRK */
+#endif /* USE_SBRK */
 
     if ((ptr = malloc(n)) == NULL)
 	out_of_memory();
 
     memset (ptr, 0, n);
 
-#ifndef HAVE_SBRK
+#ifndef USE_SBRK
     if (memtop < ((char *) ptr) + n)
 	memtop = ((char *) ptr) + n;
     if (membot == NULL)
 	membot = ptr;
-#endif /* !HAVE_SBRK */
+#endif /* !USE_SBRK */
 
     return ((memalign_t) ptr);
 }
@@ -625,9 +628,9 @@ showall(Char **v, struct command *c)
 	    (unsigned long) sbrk(0));
 #else /* SYSMALLOC */
 #ifndef HAVE_MALLINFO
-#ifdef HAVE_SBRK
+#ifdef USE_SBRK
     memtop = sbrk(0);
-#endif /* HAVE_SBRK */
+#endif /* USE_SBRK */
     xprintf(CGETS(19, 12, "Allocated memory from 0x%lx to 0x%lx (%ld).\n"),
 	    (unsigned long) membot, (unsigned long) memtop, 
 	    (unsigned long) (memtop - membot));
