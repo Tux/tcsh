@@ -1043,6 +1043,8 @@ hfree(struct Hist *hp)
 PG_STATIC void
 phist(struct Hist *hp, int hflg)
 {
+    if (hp->Href < 0)
+	return;
     if (hflg & HIST_ONLY) {
 	int old_output_raw;
 
