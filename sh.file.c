@@ -231,7 +231,7 @@ pushback(const Char *string)
 # ifdef POSIX
     (void) tcgetattr(SHOUT, &tty);
 # else
-    (void) ioctl(SHOUT, TCSETAW, (ioctl_t) &tty);
+    (void) ioctl(SHOUT, TCGETA, (ioctl_t) &tty);
 # endif /* POSIX */
     tty_normal = tty;
     tty.c_lflag &= ~(ECHOKE | ECHO | ECHOE | ECHOK | ECHONL |
