@@ -300,10 +300,18 @@
 # endif /* masscomp */
 #endif /* CBRK */
 #ifndef CMIN
-# define CMIN		CEOF
+# if VMIN == VEOF
+#  define CMIN		CEOF
+# else
+#  define CMIN		1
+# endif
 #endif /* CMIN */
 #ifndef CTIME
-# define CTIME		CEOL
+# if VTIME == VEOL
+#  define CTIME		CEOL
+# else
+#  define CTIME		0
+# endif
 #endif /* CTIME */
 
 /*
