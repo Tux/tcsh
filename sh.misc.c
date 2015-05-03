@@ -450,8 +450,11 @@ strip(Char *cp)
 
     if (!cp)
 	return (cp);
-    while ((*dp++ &= TRIM) != '\0')
-	continue;
+    while (*dp != '\0') {
+	if (*dp < INVALID_BYTE)
+		*dp &= TRIM;
+	dp++;
+    }
     return (cp);
 }
 
@@ -462,8 +465,11 @@ quote(Char *cp)
 
     if (!cp)
 	return (cp);
-    while (*dp != '\0')
-	*dp++ |= QUOTE;
+    while (*dp != '\0') {
+	if (*dp < 0x80)
+	    *dp |= QUOTE;
+	dp++;
+    }
     return (cp);
 }
 
