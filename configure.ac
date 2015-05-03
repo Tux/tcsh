@@ -10,7 +10,7 @@ dnl
 dnl $tcsh$
 
 AC_PREREQ([2.59])dnl Minimum Autoconf version required.
-AC_INIT([tcsh], [6.18.02], [http://bugs.gw.com/])
+AC_INIT([tcsh], [6.18.03], [http://bugs.gw.com/])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([tc.vers.c])
 AC_CONFIG_HEADERS([config.h])
