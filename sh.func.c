@@ -1277,7 +1277,7 @@ xecho(int sep, Char **v)
 		case '1':
 		case '2':
 		case '3':
-		    c -= '0';
+		    c = 0;
 		    if (*cp >= '0' && *cp < '8')
 			c = c * 8 + *cp++ - '0';
 		    if (*cp >= '0' && *cp < '8')
