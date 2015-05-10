@@ -1913,6 +1913,8 @@ pintr1(int wantnl)
     {
 	(void) Cookedmode();
 	GettingInput = 0;
+	if (evalvec)
+	    doneinp = 1;
     }
     drainoline();
 #ifdef HAVE_GETPWENT
