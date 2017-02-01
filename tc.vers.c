@@ -139,8 +139,8 @@ fix_version(void)
 # define FILECSTR ""
 #endif
 /* if you want your local version to say something */
-#ifndef LOCALSTR
-# define LOCALSTR ""
+#ifndef LOCALSTR	/* ÷÷÷ PROCURA */
+# define LOCALSTR ",procura"
 #endif /* LOCALSTR */
     char    *version;
     const Char *machtype = tgetenv(STRMACHTYPE);

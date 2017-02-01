@@ -1113,6 +1113,11 @@ e_inc_search(int dir)
 		*LastChar++ = ch;
 		*LastChar = '\0';
 		Refresh();
+#ifdef PROCURA	/* ÷÷÷ */
+		if (VImode && CurrentKeyMap == CcAltMap &&
+		    CurrentKeyMap[(unsigned char)ch] == F_INSERT)
+		    (void)v_insert (0);
+#endif
 	    }
 	    break;
 

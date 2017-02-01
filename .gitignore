@@ -1,6 +1,8 @@
 **/*.o
 **/Makefile
 !win32/msg/Makefile
+*.cat
+*.o
 atconfig
 atlocal
 autom4te.cache
@@ -21,6 +23,7 @@ tcsh_*.orig.tar.gz
 tcsh-*.tar.gz
 tcsh-*.tar.gz.asc
 tcsh.man
+testsuite.log
 tests/package.m4
 tests/testsuite
 testsuite.dir/**
