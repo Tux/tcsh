@@ -40,6 +40,7 @@
 #ifdef HAVE_FEATURES_H
 #include <features.h>		/* for __GLIBC__ */
 #endif
+#define PROCURA	/* ÷÷÷ */
 
 /*
  * SHORT_STRINGS Use at least 16 bit characters instead of 8 bit chars
@@ -67,8 +68,8 @@
 
 /*
  * VIDEFAULT    Make the VI mode editor the default
- */
-#undef VIDEFAULT
+ */		/* ÷÷÷ PROCURA */
+#define VIDEFAULT
 
 /*
  * KAI          use "bye" command and rename "log" to "watchlog"
@@ -84,8 +85,8 @@
 
 /*
  * DOTLAST      put "." last in the default path, for security reasons
- */
-#define DOTLAST
+ */		/* ÷÷÷ PROCURA */
+#undef DOTLAST
 
 /*
  * NODOT	Don't put "." in the default path, for security reasons
@@ -96,8 +97,8 @@
  * AUTOLOGOUT	tries to determine if it should set autologout depending
  *		on the name of the tty, and environment.
  *		Does not make sense in the modern window systems!
- */
-#define AUTOLOGOUT
+ */		/* ÷÷÷ PROCURA */
+#undef AUTOLOGOUT
 
 /*
  * SUSPENDED	Newer shells say 'Suspended' instead of 'Stopped'.
@@ -134,17 +135,6 @@
 #undef NEWGRP
 
 /*
- * SYSMALLOC	Use the system provided version of malloc and friends.
- *		This can be much slower and no memory statistics will be
- *		provided.
- */
-#if defined(__MACHTEN__) || defined(PURIFY) || defined(MALLOC_TRACE) || defined(_OSD_POSIX) || defined(__MVS__) || defined (__CYGWIN__) || defined(__GLIBC__) || defined(__OpenBSD__) || defined(__APPLE__) || defined (__ANDROID__)
-# define SYSMALLOC
-#else
-# undef SYSMALLOC
-#endif
-
-/*
  * USE_ACCESS	Use access(2) rather than stat(2) when POSIX is defined.
  *		POSIX says to use stat, but stat(2) is less accurate
  *		than access(2) for determining file access.
@@ -161,15 +151,13 @@
 
 /*
  * COLOR_LS_F Do you want to use builtin color ls-F ?
- *
  */
 #define COLOR_LS_F
 
 /*
  * COLORCAT Do you want to colorful message ?
- *
- */
-#undef COLORCAT
+ */		/* ÷÷÷ PROCURA */
+#define COLORCAT
 
 /*
  * FILEC    support for old style file completion

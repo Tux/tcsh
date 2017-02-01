@@ -31,6 +31,9 @@
  */
 #include "sh.h"
 #include "ed.h"
+#ifdef PROCURA	/* ÷÷÷ */
+#  include "ed.term.h"
+#  endif
 
 static	void		ed_InitMetaBindings 	(void);
 
@@ -1898,6 +1901,37 @@ ed_InitEmacsMaps(void)
     update_wordchars();
 
     ResetXmap();
+#ifdef PROCURA	/* ÷÷÷ */
+    {
+	extern	int		insource;
+	auto	ttydata_t	td;
+	auto	unsigned char	chars[32];
+
+	if (strncmp (getenv ("TERM"), "wy60", 4) == 0) {
+	    CcViMap[1]		= F_INSERT;	/* ^A */
+	    CcViMap[11]		= F_UP_HIST;	/* ^K */
+	    CcViMap[12]		= F_CHARFWD;	/* ^L */
+	    CcViCmdMap[1]	= F_INSERT;	/* ^A */
+	    CcViCmdMap[11]	= F_UP_HIST;	/* ^K */
+	    CcViCmdMap[12]	= F_CHARFWD;	/* ^L */
+	    CcViCmdMap[46]	= F_INSERT;	/* .  */
+	    if (!getenv ("LANG") && !getenv ("LC_CTYPE")) {
+		for (i = 0x80; i < 0xA0; i++) {
+		    CcViMap[i]		= F_INSERT;
+		    CcViCmdMap[i]	= F_INSERT;
+		    }
+		AsciiOnly = 0;
+		}
+	    }
+	if (CcViMap[8] == F_DELPREV) {
+	    if (tty_getty (insource ? OLDSTD : SHIN, &td) == 0) {
+		tty_getchar (&td, chars);
+		if (chars[C_ERASE] != '\b')
+		    CcViMap[8] = F_CHARBACK;
+		}
+	    }
+	}
+#endif	/* PROCURA */ 
     for (i = 0; i < NT_NUM_KEYS; i++) {
 	CcKeyMap[i] = CcEmacsMap[i];
 	CcAltMap[i] = F_UNASSIGNED;

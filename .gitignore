@@ -1,6 +1,8 @@
 **/*.o
 **/Makefile
 !win32/msg/Makefile
+*.cat
+*.o
 atconfig
 autom4te.cache
 config.h
@@ -15,6 +17,7 @@ tc.const.h
 tc.defs.c
 tcsh
 tcsh-*.tar.gz
+testsuite.log
 tests/package.m4
 tests/testsuite
 testsuite.dir/**
