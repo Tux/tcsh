@@ -254,9 +254,17 @@ Char STRsldtlogout[]	= { '/', '.', 'l', 'o', 'g', 'o', 'u', 't', '\0' };
 Char STRjobs[]		= { 'j', 'o', 'b', 's', '\0' };
 Char STRdefprompt[]	= { '%', '#', ' ', '\0' };
 Char STRmquestion[]	= { '%', 'R', (Char)('?' | QUOTE), ' ', '\0' };
+#ifdef PROCURA	/* ÷÷÷ CORRECT>%R (y|n|e|a)?
+		   --> Correct > %R [y|n|E|a]? */
+Char STRKCORRECT[]      = { 'C', 'o', 'r', 'r', 'e', 'c', 't', ' ', '>', ' ',
+			    '%', 'R', ' ', (Char)('[' | QUOTE),  'y', '|', 'n',
+			    '|', 'E', '|', 'a', (Char)(']' | QUOTE),
+			    (Char)('?' | QUOTE), ' ', '\0' };
+#else
 Char STRKCORRECT[]	= { 'C', 'O', 'R', 'R', 'E', 'C', 'T', '>', '%', 'R',
 			    ' ', '(', 'y', '|', 'n', '|', 'e', '|', 'a', ')',
 			    (Char)('?' | QUOTE), ' ', '\0' };
+#endif
 Char STRunalias[]	= { 'u', 'n', 'a', 'l', 'i', 'a', 's', '\0' };
 Char STRalias[]		= { 'a', 'l', 'i', 'a', 's', '\0' };
 Char STRprecmd[]	= { 'p', 'r', 'e', 'c', 'm', 'd', '\0' };

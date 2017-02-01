@@ -71,7 +71,7 @@ typedef struct {
 #define	GLOB_NOMATCH	(-3)	/* No match, and GLOB_NOCHECK was not set. */
 #define	GLOB_NOSYS	(-4)	/* Implementation does not support function. */
 
-/* #if !defined(_POSIX_C_SOURCE) && !defined(_XOPEN_SOURCE) */
+/* #if (!defined(_POSIX_C_SOURCE) && !defined(_XOPEN_SOURCE)) || defined(_AIX) /* ÷÷÷ PROCURA  */
 #define	GLOB_ALTDIRFUNC	0x0040	/* Use alternately specified directory funcs. */
 #define	GLOB_BRACE	0x0080	/* Expand braces ala csh. */
 #define	GLOB_MAGCHAR	0x0100	/* Pattern had globbing characters. */
