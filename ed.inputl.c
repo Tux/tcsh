@@ -265,7 +265,21 @@ Inputl(void)
 		    else {
 			Strcpy(InputBuf, Origin);
 			LastChar = SaveChar;
+#ifdef PROCURA	/* ÷÷÷ */
+			/* Ignore current input (Ignore/Kill/Quit) */
+			if (ch == 'a' || ch == 'i' || ch == 'k' || ch == 'q') {
+			    xprintf(CGETS(6, 4, "abort\n"));
+			    LastChar = InputBuf;   /* Null the current line */
+			    Cursor = LastChar;
+			    printprompt(0, NULL);
+			    Refresh();
+			    break;
+			    }
+
+			if (ch == 'e' || ch == '\r' || ch == '\n') {
+#else
 			if (ch == 'e') {
+#endif
 			    xprintf("%s", CGETS(6, 3, "edit\n"));
 			    *LastChar-- = '\0';
 			    Cursor = LastChar;

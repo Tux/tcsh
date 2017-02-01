@@ -1272,7 +1272,7 @@ AT_SETUP([$ prompt3])
 AT_KEYWORDS([variables])
 
 AT_CHECK([echo 'echo "$prompt3"' | tcsh -f], ,
-[CORRECT>%R (y|n|e|a)? @&t@
+[Correct > %R [[y|n|E|a]]? @&t@
 ])
 
 AT_CLEANUP()

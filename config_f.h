@@ -40,6 +40,7 @@
 #ifdef HAVE_FEATURES_H
 #include <features.h>		/* for __GLIBC__ */
 #endif
+#define PROCURA	/* ÷÷÷ */
 
 /*
  * SHORT_STRINGS Use at least 16 bit characters instead of 8 bit chars
@@ -76,8 +77,8 @@
 
 /*
  * VIDEFAULT    Make the VI mode editor the default
- */
-#undef VIDEFAULT
+ */		/* ÷÷÷ PROCURA */
+#define VIDEFAULT
 
 /*
  * KAI          use "bye" command and rename "log" to "watchlog"
@@ -93,8 +94,8 @@
 
 /*
  * DOTLAST      put "." last in the default path, for security reasons
- */
-#define DOTLAST
+ */		/* ÷÷÷ PROCURA */
+#undef DOTLAST
 
 /*
  * NODOT	Don't put "." in the default path, for security reasons
@@ -105,8 +106,8 @@
  * AUTOLOGOUT	tries to determine if it should set autologout depending
  *		on the name of the tty, and environment.
  *		Does not make sense in the modern window systems!
- */
-#define AUTOLOGOUT
+ */		/* ÷÷÷ PROCURA */
+#undef AUTOLOGOUT
 
 /*
  * SUSPENDED	Newer shells say 'Suspended' instead of 'Stopped'.
@@ -170,15 +171,13 @@
 
 /*
  * COLOR_LS_F Do you want to use builtin color ls-F ?
- *
  */
 #define COLOR_LS_F
 
 /*
  * COLORCAT Do you want to colorful message ?
- *
- */
-#undef COLORCAT
+ */		/* ÷÷÷ PROCURA */
+#define COLORCAT
 
 /*
  * FILEC    support for old style file completion

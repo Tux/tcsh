@@ -83,6 +83,10 @@
 # endif /* !_PATH_DOTLOGIN */
 #endif /* sgi || OREO || cray || AMIX || CDC */
 
+#ifdef PROCURA	/* ÷÷÷ */
+# define _PATH_TCSH		"/pro/bin/tcsh"
+# endif
+
 #if (defined(_CRAYCOM) || defined(Lynx)) && !defined(_PATH_TCSHELL)
 # define _PATH_TCSHELL		"/bin/tcsh"		/* 1st class shell */
 #endif /* _CRAYCOM && !_PATH_TCSHELL */
