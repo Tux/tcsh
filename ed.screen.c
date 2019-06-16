@@ -1638,7 +1638,7 @@ ChangeSize(int lins, int cols)
 		 * core-dumps in the termcap routines
 		 */
 		termcap[TC_BUFSIZE - 1] = '\0';
-		tsetenv(STRTERMCAP, termcap);
+		/* tsetenv(STRTERMCAP, termcap); */
 	    }
 	}
     }
