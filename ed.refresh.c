@@ -33,6 +33,7 @@
 #include "ed.h"
 /* #define DEBUG_UPDATE */
 /* #define DEBUG_REFRESH */
+/* #define DEBUG_REFCURSOR */
 /* #define DEBUG_LITERAL */
 
 /* refresh.c -- refresh the current set of lines on the screen */
@@ -1139,6 +1140,10 @@ cpy_pad_spaces(Char *dst, Char *src, int width)
 static void
 CalcPosition(int w, int th, int *h, int *v)
 {
+#ifdef DEBUG_REFCURSOR
+    int is = NLSCLASS_ILLEGAL_SIZE (w);
+    reprintf ("CP:%d W: %2d/%d, H: %d, V: %d, th: %d\r\n", __LINE__, w, is, *h, *v, th);
+#endif
     switch(w) {
 	case NLSCLASS_NL:
 	    *h = 0;
@@ -1155,6 +1160,8 @@ CalcPosition(int w, int th, int *h, int *v)
 	    *h += 4;
 	    break;
 	case NLSCLASS_ILLEGAL2:
+	    *h += NLSCLASS_ILLEGAL_SIZE(w);
+	    break;
 	case NLSCLASS_ILLEGAL3:
 	case NLSCLASS_ILLEGAL4:
 	case NLSCLASS_ILLEGAL5:
@@ -1163,22 +1170,32 @@ CalcPosition(int w, int th, int *h, int *v)
 	default:
 	    *h += w;
     }
+#ifdef DEBUG_REFCURSOR
+    reprintf ("cP:%d W: %2d/%d, H: %d, V: %d, th: %d\r\n", __LINE__, w, is, *h, *v, th);
+#endif
     if (*h >= th) {		/* check, extra long tabs picked up here also */
 	*h -= th;
 	(*v)++;
     }
+#ifdef DEBUG_REFCURSOR
+    reprintf ("cP:%d W: %2d/%d, H: %d, V: %d, th: %d\r\n", __LINE__, w, is, *h, *v, th);
+#endif
 }
 
 void
 RefCursor(void)
 {				/* only move to new cursor pos */
     Char *cp;
-    int w, h, th, v;
+    int w, h, th, v, pl;
 
     /* first we must find where the cursor is... */
     h = 0;
     v = 0;
     th = TermH;			/* optimize for speed */
+
+    /* Prompt length in bytes and in characters */
+    for (cp = Prompt; *cp; cp++);
+    pl = cp - Prompt;
 
     for (cp = Prompt; cp != NULL && *cp; ) {	/* do prompt */
 	if (*cp & LITERAL) {
@@ -1189,12 +1206,18 @@ RefCursor(void)
 	cp++;
 	CalcPosition(w, th, &h, &v);
     }
+#ifdef DEBUG_REFCURSOR
+    reprintf ("RC:%d '%s'/%d => H: %d, V: %d, th: %d, W: %d\r\n", __LINE__, Prompt, pl, h, v, th, w);
+#endif
 
     for (cp = InputBuf; cp < Cursor;) {	/* do input buffer to Cursor */
 	w = NLSClassify(*cp & CHAR, cp == InputBuf, 0);
 	cp++;
 	CalcPosition(w, th, &h, &v);
     }
+#ifdef DEBUG_REFCURSOR
+    reprintf ("RC:%d '%s'/%d => H: %d, V: %d, th: %d, W: %d\r\n", __LINE__, Prompt, pl, h, v, th, w);
+#endif
 
     /* now go there */
     MoveToLine(v);
