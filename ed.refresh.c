@@ -33,7 +33,7 @@
 #include "ed.h"
 /* #define DEBUG_UPDATE */
 /* #define DEBUG_REFRESH */
-/* #define DEBUG_REFCURSOR */
+/* #define DEBUG_REFCURSOR 1 */
 /* #define DEBUG_LITERAL */
 
 /* refresh.c -- refresh the current set of lines on the screen */
@@ -57,7 +57,7 @@ extern
 #endif
 	void    PutPlusOne      (Char, int);
 static	void	cpy_pad_spaces		(Char *, Char *, int);
-#if defined(DEBUG_UPDATE) || defined(DEBUG_REFRESH) || defined(DEBUG_LITERAL)
+#if defined(DEBUG_UPDATE) || defined(DEBUG_REFRESH) || defined(DEBUG_LITERAL) || defined(DEBUG_REFCURSOR)
 static	void	reprintf			(char *, ...);
 #ifdef DEBUG_UPDATE
 static	void	dprintstr		(char *, const Char *, const Char *);
